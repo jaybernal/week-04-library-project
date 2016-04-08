@@ -1,0 +1,7 @@
+<h1>Library Locations</h1>
+
+<ol>
+	<% @library.each do |name| %>
+		<li><a href="/library/<%= name.id %>"><%= name.branch_name %></a> : <%= name.address %></li>
+	<%end%>
+</ol>

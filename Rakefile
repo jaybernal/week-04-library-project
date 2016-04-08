@@ -1,3 +1,4 @@
+require "sinatra/activerecord"
 require "rake/testtask"
 require "sinatra/activerecord/rake"
 
