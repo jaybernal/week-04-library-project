@@ -13,9 +13,11 @@ get "/" do
 	binding.pry
 end
 
+
+################################### Library ##########################################
 # Index = Displays the list of data
 get "/library" do 
-	@library = Library.all
+	@libraries = Library.all
 	erb :library_index
 end
 
@@ -25,15 +27,44 @@ get "/library/new" do
 end
 
 # Create = Post new data submitted to activerecord
- 
 post "/library" do 
-	binding.pry
+	if @library = Library.create(params)
+		redirect to ("/library")
+	else
+		erb :library_new
+	end
 end
-
 
 # Show = displays the
 get "/library/:id" do 
-	@library = Library.find_by_id(params['id'])
+	@library = Library.find_by_id(params["id"])
 	erb :library_show
 end
+
+# edit = ablity to change existing records
+
+get "/library/:id/edit" do 
+	@library = Library.find_by_id(params["id"])
+	erb :library_edit
+end
+
+post "/library/:id" do 
+	@library = Library.find_by_id(params["id"])
+	if @library.update_attributes(branch_name: params["branch_name"], phone_number: params["phone_number"], address: params["address"])
+		redirect to ("/library/#{@library.id}")
+	else
+		erb :library_edit
+	end
+end
+
+
+################################### Books ##########################################
+
+# Index - Display all Books
+get "/book" do 
+	@books = Book.all
+	erb :book_index
+end
+
+
 
