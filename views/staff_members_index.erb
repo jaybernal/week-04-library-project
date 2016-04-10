@@ -1,0 +1,9 @@
+<h1>Nebraska Network Library Staff Memembers</h1>
+
+<ul>
+	<% @staff_members.each do |staff| %>
+	<a href="/staff_member/<%= staff.id %>"><li><%= staff.name %></a> : <%= staff.email %></li>
+	<% end %>
+</ul>
+
+<a href="/staff_member/new">Add New Staff Memeber</a>

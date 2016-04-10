@@ -57,7 +57,6 @@ post "/library/:id" do
 	end
 end
 
-
 ################################### Books ##########################################
 
 # Index - Display all Books
@@ -75,7 +74,6 @@ end
 post "/book" do
 	binding.pry
 	if @book = Book.create(params)
-
 		redirect to ("/book")
 	else
 		erb :book_new
@@ -104,4 +102,25 @@ post "/book/:id" do
 	end
 end
 
+################################### Staff Members ##########################################
 
+# Index
+get "/staff_members" do 
+	@staff_members = StaffMember.all
+	erb :staff_members_index
+end
+
+# New
+get "/staff_members/new" do
+	erb :staff_members_new
+end
+
+# Create
+post "/staff_members" do 
+	binding.pry
+	if @staff_member = StaffMember.create(params)
+		redirect to ("staff_members")
+	else
+		erb :staff_members_new
+	end
+end
