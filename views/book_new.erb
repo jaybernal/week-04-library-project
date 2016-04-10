@@ -1,0 +1,15 @@
+<% if @book && @book.errors.any? %>
+	<% @book.errors.full_messages.each do |b| %>
+		<p>Error: <%= b %></p>
+	<% end %>
+<% end %>
+
+<h1>New Books</h1>
+<form action="/book" 	method="post">
+Title: 	<input type="text" 		name="title">
+Author: <input type="text"		name="author">
+ISBN:		<input type="text" 		name="isbn">
+				<input type="submit" 	value= "Submit New Book">
+</form> 
+
+<a href="/book">Return to Books</a>

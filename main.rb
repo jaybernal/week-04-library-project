@@ -9,8 +9,8 @@ require_relative "lib/patron.rb"
 require_relative "lib/staff_member.rb"
 
 
-get "/" do 
-	binding.pry
+get '/pry' do
+  binding.pry
 end
 
 
@@ -23,7 +23,7 @@ end
 
 # New = Create new Library Branches
 get "/library/new" do 
-	erb :library_new
+	erb :library_new 
 end
 
 # Create = Post new data submitted to activerecord
@@ -35,7 +35,7 @@ post "/library" do
 	end
 end
 
-# Show = displays the
+# Show = displays the data in an arrayfå
 get "/library/:id" do 
 	@library = Library.find_by_id(params["id"])
 	erb :library_show
@@ -66,5 +66,42 @@ get "/book" do
 	erb :book_index
 end
 
+# New = Create new Library Branches
+get "/book/new" do
+	erb	:book_new
+end
+
+# Create = Post new data submitted to activerecord
+post "/book" do
+	binding.pry
+	if @book = Book.create(params)
+
+		redirect to ("/book")
+	else
+		erb :book_new
+	end
+end
+
+# Show = displays the data in an array
+get "/book/:id" do 
+	@book = Book.find_by_id(params["id"])
+	erb :book_show
+end
+
+# edit = ablity to change existing records
+
+get "/book/:id/edit" do 
+	@book = Book.find_by_id(params["id"])
+	erb :book_edit
+end
+
+post "/book/:id" do 
+	@book = Book.find_by_id(params["id"])
+	if @book.update_attributes(title: params["title"], author: params["author"], isbn: params["isbn"])
+		redirect to ("/book/#{@book.id}")
+	else
+		erb :book_edit
+	end
+end
 
 

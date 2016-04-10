@@ -1,1 +1,10 @@
 <h1>Display Books</h1>
+
+<ol>
+<% @books.each do |book| %>
+	<li><a href="/book/<%= book.id %>"><%= book.title %></a> : <%= book.author %>: <%= book.isbn %></li>
+	<% end %>
+</ol>
+ 
+
+<a href="/book/new">Add a new book</a>
