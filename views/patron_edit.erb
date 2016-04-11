@@ -1,0 +1,10 @@
+<h1>Members</h1>
+
+<form action="/patron/<%= @patron.id %>"	method ="post">
+	Patron Name: 	<input type = "text"		name =  "name" 	value = "<%= @patron.name %>">
+	Patron Email:	<input type = "text" 		name =  "email" value = "<%= @patron.email %>">
+								<input type = "submit"	value= "Submit Edit to <%= @patron.name %>">
+</form>
+
+</br>
+<a href="/patron">Return to Patron Menu</a>

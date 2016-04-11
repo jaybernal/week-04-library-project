@@ -2,8 +2,8 @@
 
 <ul>
 	<% @staff_members.each do |staff| %>
-	<a href="/staff_member/<%= staff.id %>"><li><%= staff.name %></a> : <%= staff.email %></li>
+	<a href="/staff_members/<%= staff.id %>"><li><%= staff.name %></a> : <%= staff.email %></li>
 	<% end %>
-</ul>
+</ul></br>
 
-<a href="/staff_member/new">Add New Staff Memeber</a>
+<a href="/staff_members/new">Add New Staff Memeber</a>

@@ -117,10 +117,76 @@ end
 
 # Create
 post "/staff_members" do 
-	binding.pry
+
 	if @staff_member = StaffMember.create(params)
 		redirect to ("staff_members")
 	else
 		erb :staff_members_new
+	end
+end
+
+# Show
+get "/staff_members/:id" do 
+	@staff_member = StaffMember.find_by_id(params["id"])
+	erb :staff_members_show
+end
+
+# Edit
+get "/staff_members/:id/edit" do
+	@staff_member = StaffMember.find_by_id(params["id"])
+	erb :staff_members_edit
+end
+
+post "/staff_members/:id" do 
+	@staff_member = StaffMember.find_by_id(params["id"])
+	if @staff_member.update_attributes(name: params["name"], email: params["email"])
+		redirect to ("/staff_members/#{@staff_member.id}")
+	else
+		erb :staff_members_edit
+	end
+end
+
+
+################################### Patrons Members ##########################################
+
+# Index
+get "/patron" do 
+	@patrons = Patron.all
+	erb :patron_index
+end
+
+# New
+get "/patron/new" do
+	erb :patron_new
+end
+
+# Create
+post "/patron" do 
+
+	if @patron = Patron.create(params)
+		redirect to ("patron")
+	else
+		erb :patron_new
+	end
+end
+
+# Show
+get "/patron/:id" do 
+	@patron = Patron.find_by_id(params["id"])
+	erb :patron_show
+end
+
+# Edit
+get "/patron/:id/edit" do
+	@patron = Patron.find_by_id(params["id"])
+	erb :patron_edit
+end
+
+post "/patron/:id" do 
+	@patron = Patron.find_by_id(params["id"])
+	if @patron.update_attributes(name: params["name"], email: params["email"])
+		redirect to ("/patron/#{@patron.id}")
+	else
+		erb :patron_edit
 	end
 end

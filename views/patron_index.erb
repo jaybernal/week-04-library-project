@@ -1,0 +1,9 @@
+<h1>Nebraska Network Library Memembers</h1>
+
+<ul>
+	<% @patrons.each do |patron| %>
+	<a href="/patron/<%= patron.id %>"><li><%= patron.name %></a> : <%= patron.email %></li>
+	<% end %>
+</ul></br>
+
+<a href="/patron/new">Add New Memeber</a>
